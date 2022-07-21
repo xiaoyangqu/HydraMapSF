@@ -18,7 +18,7 @@ Notebooks
     4. save SF model：
     python train_model.py --train feature_train.csv --savemod --model xgb
 
-    5. run SF trained model:
+    5. run trained SF model:
     python train_model.py --test feature_test.csv --runmod --out result.txt
 
    
