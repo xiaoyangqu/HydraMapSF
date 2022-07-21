@@ -25,7 +25,7 @@ Notebooks
 Folders
     
     data: protein & ligand structure files, experimental binding affinity file, and PDBID list file
-    script: script related to features generation and modeling   
+    script: scripts related to features generation and modeling   
     
 Notes:
 
