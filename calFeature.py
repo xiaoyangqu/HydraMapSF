@@ -429,7 +429,7 @@ def main(pdbbind_dir,cutoff=12.0,embedding=False,dist=2.0,feat='hydra'):
 
     data_set_file='list_pdbid.txt'
     exp_file = 'list_exp_2016.csv'
-    dlabel = pd.read_csv(exp_file)
+    dlabel = pd.read_csv(f"{pdbbind_dir}/{exp_file}")
 
     with open(f"{pdbbind_dir}/{data_set_file}") as f:
         data_set = [line.strip() for line in f]
@@ -484,12 +484,6 @@ def main(pdbbind_dir,cutoff=12.0,embedding=False,dist=2.0,feat='hydra'):
 
 if __name__=='__main__':
 
-    #train_dir="/data/home/qxy/dewed_score/data/train/structure"
-    #test_dir="/data/home/qxy/dewed_score/data/test/structure"
-
-    test_dir="./data/"
-
-#    main(test_dir,cutoff=15.0,embedding='',dist=2.0,feat='rf-score_hydra')
+    test_dir="./data"
     main(test_dir,cutoff=15.0,embedding='2',dist=1.0,feat='ecif_hydra')
-#    main(test_dir,cutoff=15.0,embedding='2',dist=2.0,feat='hydra')
 
