@@ -13,13 +13,13 @@ Notebooks
     python calFeature.py
 
     3. Train and test:
-    python train_model.py --train feature_trainset.csv --test feature_testset.csv --model xgb --out result.txt
+    python train_model.py --train feature_train.csv --test feature_test.csv --model xgb --out result.txt
 
     4. save SF model：
-    python train_model.py --train feature_trainset.csv --savemod --model xgb
+    python train_model.py --train feature_train.csv --savemod --model xgb
 
     5. run SF trained model:
-    python train_model.py --test feature_testset.csv --runmod --out result.txt
+    python train_model.py --test feature_test.csv --runmod --out result.txt
 
    
 Folders
