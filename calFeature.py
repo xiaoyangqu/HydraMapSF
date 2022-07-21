@@ -484,6 +484,6 @@ def main(pdbbind_dir,cutoff=12.0,embedding=False,dist=2.0,feat='hydra'):
 
 if __name__=='__main__':
 
-    test_dir="./data"
+    test_dir="../data"
     main(test_dir,cutoff=15.0,embedding='2',dist=1.0,feat='ecif_hydra')
 
