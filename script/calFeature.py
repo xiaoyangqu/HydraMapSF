@@ -1,22 +1,18 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
 
 
-import numpy as np
 import pandas as pd
+import numpy as np
 from rdkit import Chem
 from scipy.spatial.distance import cdist
 from itertools import product
 import os
-
-import time
 from pymol import cmd
 
 
 
-# In[2]:
 
 # ### For ECIF
 # Possible predefined protein atoms
@@ -136,7 +132,6 @@ def LoadPDBasDF(PDB):
     return(df)
 
 
-#%%
 
 def LoadWatinEnv(protein_f,wat_f,lig_f):
     cmd.delete("all")
@@ -212,7 +207,7 @@ def LoadWatinEnv(protein_f,wat_f,lig_f):
     df_WatEnv = pd.concat([df_pocket,df_hydrophobes,df_hydrophilics,df_aromatics,df_pos,df_neg],ignore_index = True)
 
     return df_WatEnv
-#%%
+
 def GetWatPairs1(PDB_protein, SDF_ligand, PDB_water,distance_cutoff=11.5):
 # This function returns the protein-ligand atom-type pairs for a given distance cutoff
     
@@ -236,6 +231,7 @@ def GetWatPairs1(PDB_protein, SDF_ligand, PDB_water,distance_cutoff=11.5):
 
     Pairs1["ELEMENTS_PAIR"] = [x.split("-")[0].split(";")[0]+"-"+x.split("-")[1].split(";")[0] for x in Pairs1["ECIF_PAIR"]]
     return Pairs1  
+
     # Get W-P pairs
 def GetWatPairs2(PDB_protein, SDF_ligand, PDB_water,distance_cutoff=11.5):    
         # Load both structures as pandas DataFrames
@@ -346,9 +342,9 @@ def embedding_ratio(protein_f,lig_f):
     return r
 
 
-'''
-For Fingerprint Pattern
-'''
+
+#For Fingerprint Pattern
+
 
 three_one_letter ={'VAL':'V', 'ILE':'I', 'LEU':'L', 'GLU':'E', 'GLN':'Q', \
     'ASP':'D', 'ASN':'N', 'HIS':'H', 'TRP':'W', 'PHE':'F', 'TYR':'Y', \
@@ -413,7 +409,7 @@ def get_buried_ratio(protein_f,lig_f,wat_f):
     lig_area = cmd.get_area(f"{lig}") 
     bsasa = []
     for resi in three_letter:       
-        #cmd.create(f'{resi}_wat', f'br. {wat} w. 4 of resn {resi} in poc')
+
         cmd.create(f'{resi}inpoc', f'resn {resi} in poc')
         cmd.create(f'com_{resi}_lig', f'{resi}inpoc or {lig}')
         pro_area = cmd.get_area(f"{resi}inpoc")
@@ -421,7 +417,7 @@ def get_buried_ratio(protein_f,lig_f,wat_f):
 
         dsasa = pro_area + lig_area - complex_area
         s = round(dsasa*0.5+0,1)
-        #r = dsasa*0.5/pro_area
+
         bsasa.append(s)
     return bsasa
 
@@ -435,7 +431,7 @@ def main(pdbbind_dir,cutoff=12.0,embedding=False,dist=2.0,feat='hydra'):
         data_set = [line.strip() for line in f]
 
     dfeature=pd.DataFrame()
-    #df2=pd.DataFrame()
+
     for pdb in data_set:
         Protein = f'{pdbbind_dir}/{pdb}_protein.pdb'
         Ligand = f'{pdbbind_dir}/{pdb}_ligand.sdf'
@@ -485,5 +481,5 @@ def main(pdbbind_dir,cutoff=12.0,embedding=False,dist=2.0,feat='hydra'):
 if __name__=='__main__':
 
     test_dir="../data"
-    main(test_dir,cutoff=15.0,embedding='2',dist=1.0,feat='ecif_hydra')
+    main(test_dir,cutoff=11.5,embedding='2',dist=1.0,feat='ecif_hydra')
 
