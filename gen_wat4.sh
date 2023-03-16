@@ -1,4 +1,4 @@
-work_path=./data
+work_path=$1
 cd $work_path
 
 cat > PARA_PRO.TXT << EOF
