@@ -6,7 +6,7 @@ CONTENTS
 
 Notebooks
 
-    1. Generating hydration sites by Hydration sites analysis:
+    1. Generating hydration sites by HydraMap analysis:
     sh gen_wat4.sh ./data
     
     2. Generaing HydraMap-based features, RF-score features or Extended Connectivity Interaction Features:
